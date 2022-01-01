@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        tools:context=".ui.auth.NameProfileFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/hGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="72dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vGuidelineStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="26dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vGuidelineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="26dp" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textColor="@color/mango_tango"
+            app:layout_constraintStart_toStartOf="@id/vGuidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/hGuideline" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputName"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="4dp"
+            app:hintEnabled="false"
+            app:hintTextColor="@color/dove_gray"
+            app:layout_constraintEnd_toEndOf="@id/vGuidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/vGuidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/tvName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/dove_gray"
+                android:textColor="@color/mango_tango" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvChooseProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/choose_profile"
+            android:textColor="@color/mango_tango"
+            app:layout_constraintStart_toStartOf="@id/vGuidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/textInputName" />
+
+
+        <ImageButton
+            android:id="@+id/profile1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@null"
+            android:contentDescription="@string/choose_profile"
+            android:src="@drawable/profile_1"
+            app:layout_constraintEnd_toStartOf="@id/profile2"
+            app:layout_constraintStart_toStartOf="@id/vGuidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/tvChooseProfile" />
+
+        <TextView
+            android:id="@+id/tvSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selected"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/profile2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@null"
+            android:contentDescription="@string/choose_profile"
+            android:src="@drawable/profile_2"
+            app:layout_constraintBottom_toBottomOf="@id/profile1"
+            app:layout_constraintEnd_toStartOf="@id/profile3"
+            app:layout_constraintStart_toEndOf="@id/profile1"
+            app:layout_constraintTop_toTopOf="@id/profile1" />
+
+        <ImageButton
+            android:id="@+id/profile3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="10dp"
+            android:background="@null"
+            android:contentDescription="@string/choose_profile"
+            android:src="@drawable/profile_3"
+            app:layout_constraintBottom_toBottomOf="@id/profile1"
+            app:layout_constraintEnd_toStartOf="@+id/vGuidelineEnd"
+            app:layout_constraintStart_toEndOf="@+id/profile2"
+            app:layout_constraintTop_toTopOf="@id/profile1" />
+
+        <ImageButton
+            android:id="@+id/profile4"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="30dp"
+            android:background="@null"
+            android:contentDescription="@string/choose_profile"
+            android:src="@drawable/profile_4"
+            app:layout_constraintEnd_toEndOf="@+id/profile1"
+            app:layout_constraintStart_toStartOf="@id/profile1"
+            app:layout_constraintTop_toBottomOf="@+id/profile1" />
+
+        <ImageButton
+            android:id="@+id/profile5"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@null"
+            android:contentDescription="@string/choose_profile"
+            android:src="@drawable/profile_5"
+            app:layout_constraintBottom_toBottomOf="@+id/profile4"
+            app:layout_constraintEnd_toEndOf="@+id/profile2"
+            app:layout_constraintStart_toStartOf="@+id/profile2"
+            app:layout_constraintTop_toTopOf="@+id/profile4" />
+
+        <ImageButton
+            android:id="@+id/profile6"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@null"
+            android:contentDescription="@string/choose_profile"
+            android:src="@drawable/profile_6"
+            app:layout_constraintBottom_toBottomOf="@+id/profile4"
+            app:layout_constraintEnd_toEndOf="@+id/profile3"
+            app:layout_constraintStart_toStartOf="@+id/profile3"
+            app:layout_constraintTop_toTopOf="@+id/profile4" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="26dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/background_color"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/vGuidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/vGuidelineStart" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

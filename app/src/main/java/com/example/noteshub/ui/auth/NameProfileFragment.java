@@ -3,6 +3,7 @@ package com.example.noteshub.ui.auth;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
@@ -15,18 +16,29 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.Constants;
 import com.example.noteshub.R;
 import com.example.noteshub.base.BaseFragment;
 import com.example.noteshub.databinding.FragmentNameProfileBinding;
+import com.example.noteshub.repository.FirestoreRepository;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.FirestoreRegistrar;
+import com.google.firebase.firestore.Transaction;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 
 public class NameProfileFragment extends BaseFragment {
 
 
-    FragmentNameProfileBinding binding;
+    private FragmentNameProfileBinding binding;
     int selectedProfileNumber = -1;
+    private FirestoreRepository repository = new FirestoreRepository();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,8 +87,39 @@ public class NameProfileFragment extends BaseFragment {
     private void updateNameAndProfile() {
 
         String name = Objects.requireNonNull(binding.etName.getText()).toString().trim();
+        Map<String, Object> userNameProf = new HashMap<>();
+        userNameProf.put("USER_NAME", name);
+        userNameProf.put("PROFILE_NUMBER", selectedProfileNumber);
+
+        repository.getUserProfileCollection().document(Constants.UserAuthID).set(userNameProf)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(activity, "Name and Image added", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(activity, "Try again later.", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
+//        repository.getUserProfileCollection()
+//                .add(userNameProf)
+//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+//                        Toast.makeText(activity, "Name and Image added", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(activity, "Try again later.", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
     }
 

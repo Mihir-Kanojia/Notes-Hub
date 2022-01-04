@@ -12,16 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.Constants;
 import com.example.noteshub.R;
 import com.example.noteshub.base.BaseFragment;
 import com.example.noteshub.databinding.FragmentLoginBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginFragment extends BaseFragment {
@@ -62,14 +57,14 @@ public class LoginFragment extends BaseFragment {
                 firebaseAuth.signInAnonymously()
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                FirebaseUser user = firebaseAuth.getCurrentUser();
+                                String user = firebaseAuth.getCurrentUser().getUid();
                                 updateUI(user);
                             } else {
                                 Toast.makeText(activity, "Authentication failed/nTry again later", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .addOnFailureListener(e -> {
-                            Log.d(TAG, "onClick: "+e);
+                            Log.d(TAG, "onClick: " + e);
                             Toast.makeText(activity, "Authentication failed/nTry again later", Toast.LENGTH_SHORT).show();
                         });
             }
@@ -77,9 +72,12 @@ public class LoginFragment extends BaseFragment {
 
     }
 
-    private void updateUI(FirebaseUser user) {
-        Log.d(TAG, "updateUI: " + user);
-        Navigation.findNavController(activity, R.id.fragment).navigate(R.id.action_loginFragment_to_nameProfileFragment);
+    private void updateUI(String userId) {
+        Log.d(TAG, "updateUI: " + userId);
+        Constants.UserAuthID = userId;
+        Bundle bundle = new Bundle();
+        bundle.putString("USERID", userId);
+        Navigation.findNavController(activity, R.id.fragment).navigate(R.id.action_loginFragment_to_nameProfileFragment, bundle);
     }
 
     @Override

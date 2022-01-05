@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:name=".CoreApp"
         android:allowBackup="true"
@@ -15,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NotesHub">
         <activity
+            android:name=".ui.dashboard.DashboardActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.auth.AuthActivity"
             android:exported="true">
             <intent-filter>
@@ -22,7 +24,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

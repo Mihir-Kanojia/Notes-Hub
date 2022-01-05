@@ -20,7 +20,9 @@ import com.example.Constants;
 import com.example.noteshub.R;
 import com.example.noteshub.base.BaseFragment;
 import com.example.noteshub.databinding.FragmentNameProfileBinding;
+import com.example.noteshub.managers.ActivitySwitchManager;
 import com.example.noteshub.repository.FirestoreRepository;
+import com.example.noteshub.ui.dashboard.DashboardActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -95,15 +97,11 @@ public class NameProfileFragment extends BaseFragment {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(activity, "Name and Image added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, "Account Created Successfully", Toast.LENGTH_SHORT).show();
+                        new ActivitySwitchManager(activity, DashboardActivity.class).openActivity();
                     }
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(activity, "Try again later.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                .addOnFailureListener(e -> Toast.makeText(activity, "Try again later.", Toast.LENGTH_SHORT).show());
 
 
 //        repository.getUserProfileCollection()

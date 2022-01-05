@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/camera"
+        android:icon="@drawable/ic_camera"
+        android:title="@string/camera" />
+
+    <item
+        android:id="@+id/bin"
+        android:icon="@drawable/ic_manage"
+        android:title="@string/manage" />
+
+    <item
+        android:id="@+id/manage"
+        android:icon="@drawable/ic_delete_sweep"
+        android:title="@string/bin" />
+
+
+</menu>

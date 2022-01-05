@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.example.noteshub.CoreApp;
 import com.example.noteshub.R;
 import com.example.noteshub.databinding.ActivityAuthBinding;
+import com.example.noteshub.managers.ActivitySwitchManager;
+import com.example.noteshub.ui.dashboard.DashboardActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -25,15 +27,25 @@ public class AuthActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            new ActivitySwitchManager(this, DashboardActivity.class).openActivity();
+        }
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth);
         setContentView(binding.getRoot());
-        FirebaseApp.initializeApp(this);
+//        FirebaseApp.initializeApp(this);
         initComponents();
 
 

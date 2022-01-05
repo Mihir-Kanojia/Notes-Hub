@@ -16,14 +16,16 @@ import com.example.Constants;
 import com.example.noteshub.R;
 import com.example.noteshub.base.BaseFragment;
 import com.example.noteshub.databinding.FragmentLoginBinding;
+import com.example.noteshub.managers.ActivitySwitchManager;
+import com.example.noteshub.ui.dashboard.DashboardActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 
 public class LoginFragment extends BaseFragment {
 
 
-    private static final String TAG = "LoginAUTH";
     private FragmentLoginBinding binding;
+    private static final String TAG = "LoginAUTH";
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -31,9 +33,9 @@ public class LoginFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
 
 
-        if (getArguments() != null) {
-
-        }
+//        if (getArguments() != null) {
+//
+//        }
     }
 
     @Override

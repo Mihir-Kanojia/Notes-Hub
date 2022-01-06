@@ -29,5 +29,12 @@
         android:label="NameProfileFragment"
         tools:layout="@layout/fragment_name_profile" />
 
+    <action
+        android:id="@+id/action_nameProfileFragment_to_loginFragment"
+        app:destination="@id/loginFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/loginFragment"
+        app:popUpToInclusive="true" />
+
 
 </navigation>

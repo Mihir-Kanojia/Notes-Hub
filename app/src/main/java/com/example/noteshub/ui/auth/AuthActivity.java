@@ -29,8 +29,9 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            new ActivitySwitchManager(this, DashboardActivity.class).openActivity();
+//            new ActivitySwitchManager(this, DashboardActivity.class).openActivity();
         }
 
     }
@@ -64,12 +65,20 @@ public class AuthActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (navController.getPreviousBackStackEntry() == null) {
+//        if (navController.getPreviousBackStackEntry() == null) {
+//            callFinish();
+//        } else super.onBackPressed();
+
+        if (navController.getGraph().getStartDestination() == navController.getCurrentDestination().getId()) {
             callFinish();
-        } else super.onBackPressed();
+        } else {
+            navController.popBackStack();
+        }
+
     }
 
     private void callFinish() {
+
         if (doubleBackToExitPressedOnce) {
             super.finish();
             return;

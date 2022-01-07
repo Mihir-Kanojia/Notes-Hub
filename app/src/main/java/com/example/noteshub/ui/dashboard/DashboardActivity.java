@@ -2,6 +2,7 @@ package com.example.noteshub.ui.dashboard;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -38,29 +39,30 @@ public class DashboardActivity extends AppCompatActivity {
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         binding.bottomNavigationView.setOnItemSelectedListener(navListener);
 
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-
-                if (id == R.id.home) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashHomeFragment).commit();
-                    return true;
-                } else if (id == R.id.camera) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashCameraFragment).commit();
-                    return true;
-                } else if (id == R.id.manage) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashManageFragment).commit();
-                    return true;
-                } else if (id == R.id.bin) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashBinFragment).commit();
-                    return true;
-                }
-                return false;
-            }
-        });
+//        binding.bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                int id = item.getItemId();
+//
+//                if (id == R.id.home) {
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashHomeFragment).commit();
+//                    return true;
+//                } else if (id == R.id.camera) {
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashCameraFragment).commit();
+//                    return true;
+//                } else if (id == R.id.manage) {
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashManageFragment).commit();
+//                    return true;
+//                } else if (id == R.id.bin) {
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashBinFragment).commit();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
 
 //        binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
 //            @Override
@@ -98,16 +100,16 @@ public class DashboardActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     int id = item.getItemId();
 
-                    if (id == R.id.home) {
+                    if (id == R.id.dashHomeFragment) {
                         getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashHomeFragment).commit();
                         return true;
-                    } else if (id == R.id.camera) {
+                    } else if (id == R.id.dashCameraFragment) {
                         getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashCameraFragment).commit();
                         return true;
-                    } else if (id == R.id.manage) {
+                    } else if (id == R.id.dashManageFragment) {
                         getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashManageFragment).commit();
                         return true;
-                    } else if (id == R.id.bin) {
+                    } else if (id == R.id.dashBinFragment) {
                         getSupportFragmentManager().beginTransaction().replace(R.id.dashFragment, dashBinFragment).commit();
                         return true;
                     }

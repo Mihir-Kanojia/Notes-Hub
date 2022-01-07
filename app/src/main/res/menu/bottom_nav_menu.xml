@@ -5,6 +5,7 @@
         android:id="@+id/home"
         android:icon="@drawable/ic_home"
         android:title="@string/home" />
+
     <item
         android:id="@+id/camera"
         android:icon="@drawable/ic_camera"

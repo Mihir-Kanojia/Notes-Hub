@@ -31,7 +31,7 @@ public class AuthActivity extends AppCompatActivity {
         super.onStart();
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-//            new ActivitySwitchManager(this, DashboardActivity.class).openActivity();
+            new ActivitySwitchManager(this, DashboardActivity.class).openActivity();
         }
 
     }

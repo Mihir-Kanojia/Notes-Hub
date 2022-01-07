@@ -8,6 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_color"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
         tools:context=".ui.dashboard.DashHomeFragment">
 
         <androidx.constraintlayout.widget.Guideline
@@ -22,14 +24,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="26dp" />
+            app:layout_constraintGuide_begin="22dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/vGuidelineEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="26dp" />
+            app:layout_constraintGuide_end="22dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -47,7 +49,7 @@
             android:layout_marginStart="10dp"
             android:text="@string/hi"
             android:textColor="@color/mango_tango"
-            android:textSize="30sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/hGuideline"
             app:layout_constraintStart_toStartOf="@id/vGuidelineStart" />
@@ -73,7 +75,9 @@
             android:paddingStart="20dp"
             android:paddingEnd="46dp"
             android:textAlignment="textStart"
+            android:textColor="@color/mango_tango"
             android:textColorHint="@color/dove_gray_2"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@id/vGuidelineEnd"
             app:layout_constraintStart_toStartOf="@id/vGuidelineStart"
             app:layout_constraintTop_toBottomOf="@id/hGuideline" />

@@ -94,30 +94,11 @@ public class NameProfileFragment extends BaseFragment {
         userNameProf.put("PROFILE_NUMBER", selectedProfileNumber);
 
         repository.getUserProfileCollection().document(Constants.UserAuthID).set(userNameProf)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(activity, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                        new ActivitySwitchManager(activity, DashboardActivity.class).openActivity();
-                    }
+                .addOnSuccessListener(unused -> {
+                    Toast.makeText(activity, "Account Created Successfully", Toast.LENGTH_SHORT).show();
+                    new ActivitySwitchManager(activity, DashboardActivity.class).openActivity();
                 })
                 .addOnFailureListener(e -> Toast.makeText(activity, "Try again later.", Toast.LENGTH_SHORT).show());
-
-
-//        repository.getUserProfileCollection()
-//                .add(userNameProf)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        Toast.makeText(activity, "Name and Image added", Toast.LENGTH_SHORT).show();
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(activity, "Try again later.", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
 
     }
 

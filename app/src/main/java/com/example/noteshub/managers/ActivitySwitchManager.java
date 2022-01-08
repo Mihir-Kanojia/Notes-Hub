@@ -19,7 +19,6 @@ public class ActivitySwitchManager {
 
     public void openActivity(){
 
-
         mMenuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(mMenuIntent);
         activity.finish();

@@ -24,4 +24,8 @@
     <string name="search_by_tags">Search by tags</string>
     <string name="todo">TODO</string>
     <string name="soon_a_camera_feature_will_be_available">Soon, a camera feature will be available.</string>
+    <string name="go_back">Go back</string>
+    <string name="heading">Heading</string>
+    <string name="general">General</string>
+    <string name="description">Description</string>
 </resources>

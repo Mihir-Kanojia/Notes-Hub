@@ -55,14 +55,13 @@ public class DashHomeFragment extends BaseFragment {
 
         repository.getUserProfileCollection().document(Constants.UserAuthID)
                 .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (getActivity() != null) {
                         String username = documentSnapshot.getString("USER_NAME");
                         if (username != null && username.length() > 20) {
                             username = username.substring(0, 20);
                         }
-                        username = getString(R.string.hi) + " " + username + ",";
+                        username = getActivity().getString(R.string.hi) + " " + username + ",";
                         int profileNumber = Objects.requireNonNull(documentSnapshot.getLong("PROFILE_NUMBER")).intValue();
 
                         binding.tvGreetUser.setText(username);

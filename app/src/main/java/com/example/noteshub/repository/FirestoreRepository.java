@@ -12,8 +12,13 @@ public class FirestoreRepository {
         return firestoreDB;
     }
 
-    public CollectionReference getUserProfileCollection(){
-        return firestoreDB.collection("USERS/");
+    public CollectionReference getUserProfileCollection() {
+        return firestoreDB.collection("USERS");
+    }
+
+    public CollectionReference getNotesCollection(String userDocId) {
+        return getUserProfileCollection().document(userDocId).collection("NOTES");
+
     }
 
 }

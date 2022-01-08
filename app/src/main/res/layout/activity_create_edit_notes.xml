@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color">
+
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_color"
+            tools:context=".ui.curd.CreateEditNotesActivity">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="76dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vGuidelineStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="22dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vGuidelineEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="22dp" />
+
+            <ImageButton
+                android:id="@+id/ibBackBtn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@null"
+                android:contentDescription="@string/go_back"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toBottomOf="@id/hGuideline"
+                app:layout_constraintStart_toStartOf="@id/vGuidelineStart"
+                app:tint="@color/mango_tango" />
+
+            <ImageButton
+                android:id="@+id/ibSaveBtn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@null"
+                android:contentDescription="@string/go_back"
+                android:src="@drawable/ic_tick_check"
+                app:layout_constraintBottom_toBottomOf="@id/hGuideline"
+                app:layout_constraintEnd_toEndOf="@id/vGuidelineEnd"
+                app:tint="@color/mango_tango" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clHeading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corner_light"
+                app:layout_constraintEnd_toEndOf="@id/vGuidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/vGuidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/hGuideline">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:background="@color/card_color"
+                    android:hint="@string/heading"
+                    android:maxLines="1"
+                    android:paddingVertical="16dp"
+                    android:paddingStart="@null"
+                    android:id="@+id/etHeading"
+                    android:inputType="text"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/dove_gray"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tvSelectedTag"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvSelectedTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/tags_rounded_border"
+                    android:padding="4dp"
+                    android:text="@string/general"
+                    android:textColor="@color/dove_gray_2"
+                    android:textSize="11sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="26dp"
+                android:background="@drawable/rounded_corner_light"
+                android:gravity="start"
+                android:hint="@string/description"
+                android:minHeight="400dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="16dp"
+                android:id="@+id/etDescription"
+                android:inputType="textMultiLine"
+                android:textColor="@color/white"
+                android:textColorHint="@color/dove_gray"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/vGuidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/vGuidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/clHeading" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

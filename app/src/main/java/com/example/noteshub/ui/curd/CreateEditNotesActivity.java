@@ -44,12 +44,7 @@ public class CreateEditNotesActivity extends AppCompatActivity {
 
     private void initComponents() {
 
-        binding.ibBackBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+        binding.ibBackBtn.setOnClickListener(view -> onBackPressed());
 
         binding.ibSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,9 +65,9 @@ public class CreateEditNotesActivity extends AppCompatActivity {
 
             private void addOrUpdateNoteToDatabase() {
 
+                String selectedTagName = binding.tvSelectedTag.getText().toString().trim();
 
-//                repository.getNotesCollection(Constants.UserAuthID).document().add
-                NotesModel notesModel = new NotesModel(headingText, descriptionText, new Date());
+                NotesModel notesModel = new NotesModel(headingText, descriptionText, selectedTagName, new Date());
                 repository.getNotesCollection(Constants.UserAuthID).document().set(notesModel)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

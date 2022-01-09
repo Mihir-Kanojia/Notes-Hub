@@ -17,6 +17,9 @@ public class NotesModel {
     @SerializedName("description")
     public String description;
 
+    @SerializedName("selectedTag")
+    public String selectedTag;
+
     @ServerTimestamp
     public Date createdDate;
 
@@ -26,9 +29,10 @@ public class NotesModel {
     public NotesModel() {
     }
 
-    public NotesModel( String heading, String description, Date lastUpdatedDate) {
+    public NotesModel(String heading, String description,String selectedTag, Date lastUpdatedDate) {
         this.heading = heading;
         this.description = description;
+        this.selectedTag = selectedTag;
         this.lastUpdatedDate = lastUpdatedDate;
         this.createdDate = new Date();
     }

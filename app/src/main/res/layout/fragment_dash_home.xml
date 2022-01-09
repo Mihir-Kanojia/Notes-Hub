@@ -24,14 +24,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="22dp" />
+            app:layout_constraintGuide_begin="12dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/vGuidelineEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="22dp" />
+            app:layout_constraintGuide_end="12dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -99,6 +99,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="0dp"
+            tools:listitem="@layout/list_notes"
+            android:id="@+id/rvNotes"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/vGuidelineEnd"
             app:layout_constraintStart_toStartOf="@id/vGuidelineStart"

@@ -20,19 +20,24 @@ public class NotesModel {
     @SerializedName("selectedTag")
     public String selectedTag;
 
+    @SerializedName("isDeleted")
+    public boolean isDeleted;
+
     @ServerTimestamp
     public Date createdDate;
 
     @ServerTimestamp
     public Date lastUpdatedDate;
 
+
     public NotesModel() {
     }
 
-    public NotesModel(String heading, String description,String selectedTag, Date lastUpdatedDate) {
+    public NotesModel(String heading, String description, String selectedTag,boolean isDeleted, Date lastUpdatedDate) {
         this.heading = heading;
         this.description = description;
         this.selectedTag = selectedTag;
+        this.isDeleted = isDeleted;
         this.lastUpdatedDate = lastUpdatedDate;
         this.createdDate = new Date();
     }

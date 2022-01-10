@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
     android:background="@drawable/rounded_corner_light">
 
     <TextView
@@ -25,9 +26,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="10dp"
         android:text="I recently discovered I could make fudge with just chocolate chips, sweetened condensed milk, vanilla extract, and a thick pot on slow heat. I tried it with dark chocolate chunks..."
         android:textColor="@color/dove_gray_2"
         android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvSelectedTag"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHead" />
@@ -37,7 +40,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/tags_rounded_border"
         android:lines="1"
@@ -47,18 +49,17 @@
         android:textColor="@color/dove_gray_2"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvLastUpdatedTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="10dp"
         android:lines="1"
         android:text="Sun, 8:00"
-        android:textSize="11sp"
         android:textColor="@color/dove_gray"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvSelectedTag"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvSelectedTag" />

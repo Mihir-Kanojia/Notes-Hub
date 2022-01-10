@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
-    private static final String TAG = "NotesAdapterTAG" ;
+    private static final String TAG = "NotesAdapterTAG";
     private final List<NotesModel> notesModelList;
 
     public NotesAdapter(List<NotesModel> notesModelList) {
@@ -38,9 +38,16 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
         NotesModel model = notesModelList.get(position);
         holder.tvHead.setText(model.heading);
-        holder.tvDescription.setText(model.description);
 //        holder.tvSelectedTag.setText(model.selectedTag);
 //        holder.tvLastUpdatedTime.setText(model.lastUpdatedDate + "");
+
+        String textDescription = model.description;
+        if (textDescription.length() > 200) {
+            textDescription = textDescription.substring(0, 200) + "...";
+        }
+
+        holder.tvDescription.setText(textDescription);
+
 
     }
 

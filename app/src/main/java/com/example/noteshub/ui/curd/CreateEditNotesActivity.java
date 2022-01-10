@@ -67,7 +67,7 @@ public class CreateEditNotesActivity extends AppCompatActivity {
 
                 String selectedTagName = binding.tvSelectedTag.getText().toString().trim();
 
-                NotesModel notesModel = new NotesModel(headingText, descriptionText, selectedTagName, new Date());
+                NotesModel notesModel = new NotesModel(headingText, descriptionText, selectedTagName, false, new Date());
                 repository.getNotesCollection(Constants.UserAuthID).document().set(notesModel)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

@@ -43,11 +43,10 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
+            android:id="@+id/tvGreetUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@string/hi"
-            android:id="@+id/tvGreetUser"
             android:textColor="@color/mango_tango"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -55,11 +54,10 @@
             app:layout_constraintStart_toStartOf="@id/vGuidelineStart" />
 
         <ImageView
-            android:layout_width="52dp"
             android:id="@+id/profileImage"
+            android:layout_width="52dp"
             android:layout_height="52dp"
             android:contentDescription="@string/choose_profile"
-            android:src="@drawable/profile_1"
             app:layout_constraintBottom_toTopOf="@+id/hGuideline"
             app:layout_constraintEnd_toEndOf="@+id/imageButton"
             app:layout_constraintStart_toStartOf="@+id/imageButton" />
@@ -97,14 +95,18 @@
             app:tint="@color/dove_gray_2" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNotes"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            tools:listitem="@layout/list_notes"
-            android:id="@+id/rvNotes"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="12dp"
+            android:clipToPadding="false"
+            android:paddingBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/vGuidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/vGuidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/etSearchBox" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etSearchBox"
+            tools:listitem="@layout/list_notes" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

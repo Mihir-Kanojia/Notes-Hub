@@ -4,9 +4,10 @@ import com.google.firebase.firestore.ServerTimestamp;
 import com.google.gson.annotations.SerializedName;
 import com.google.firebase.firestore.DocumentId;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class NotesModel {
+public class NotesModel implements Serializable {
 
     @DocumentId
     public String id;

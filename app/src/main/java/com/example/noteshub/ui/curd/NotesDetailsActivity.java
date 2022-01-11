@@ -1,20 +1,22 @@
 package com.example.noteshub.ui.curd;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.example.noteshub.R;
-import com.example.noteshub.databinding.ActivityCreateEditNotesBinding;
+import com.example.noteshub.databinding.ActivityNotesDetailsBinding;
+import com.example.noteshub.model.NotesModel;
+
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class NotesDetailsActivity extends AppCompatActivity {
 
-    private ActivityCreateEditNotesBinding binding;
-
+    private ActivityNotesDetailsBinding binding;
+    private NotesModel originalNoteModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +25,12 @@ public class NotesDetailsActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_notes_details);
+        binding = ActivityNotesDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Intent intent = getIntent();
+        originalNoteModel = (NotesModel) intent.getSerializableExtra("NOTES_DETAILS");
+
 
         initComponents();
 
@@ -34,6 +40,10 @@ public class NotesDetailsActivity extends AppCompatActivity {
 
         binding.ibBackBtn.setOnClickListener(view -> onBackPressed());
 
+        binding.tvHeading.setText(originalNoteModel.heading);
+        binding.tvDescription.setText(originalNoteModel.description);
+        binding.tvCreatedDate.setText(new SimpleDateFormat("dd, MMMM, yyyy", Locale.ENGLISH).format(originalNoteModel.createdDate));
+//        binding.tvLastUpdatedTime.setText((CharSequence) originalNotesModel.lastUpdatedDate);
 
 
     }

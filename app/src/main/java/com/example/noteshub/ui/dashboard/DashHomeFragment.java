@@ -17,8 +17,10 @@ import com.example.noteshub.R;
 import com.example.noteshub.base.BaseFragment;
 import com.example.noteshub.databinding.FragmentDashHomeBinding;
 import com.example.noteshub.helpers.NotesAdapter;
+import com.example.noteshub.managers.ActivitySwitchManager;
 import com.example.noteshub.model.NotesModel;
 import com.example.noteshub.repository.FirestoreRepository;
+import com.example.noteshub.ui.curd.NotesDetailsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -120,6 +122,14 @@ public class DashHomeFragment extends BaseFragment {
         binding.rvNotes.setLayoutManager(new GridLayoutManager(activity, 2));
 //        binding.rvNotes.setLayoutManager(new LinearLayoutManager(activity));
         binding.rvNotes.setAdapter(notesAdapter);
+
+        notesAdapter.setOnItemClickListener(position -> {
+            if (position >= 0) {
+                new ActivitySwitchManager(activity, NotesDetailsActivity.class)
+                        .openActivityWithoutFinish("NOTES_DETAILS", notesModelList.get(position));
+            }
+
+        });
 
         getNotes();
 

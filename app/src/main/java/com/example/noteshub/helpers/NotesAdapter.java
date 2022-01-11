@@ -18,6 +18,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     private static final String TAG = "NotesAdapterTAG";
     private final List<NotesModel> notesModelList;
+    private onItemClickListener listener;
 
     public NotesAdapter(List<NotesModel> notesModelList) {
         this.notesModelList = notesModelList;
@@ -66,6 +67,23 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvSelectedTag = itemView.findViewById(R.id.tvSelectedTag);
             tvLastUpdatedTime = itemView.findViewById(R.id.tvLastUpdatedTime);
+
+            itemView.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION && listener != null) {
+                    listener.onItemClick(position);
+                }
+            });
         }
     }
+
+    public interface onItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    ;
 }

@@ -69,20 +69,11 @@ public class CreateEditNotesActivity extends AppCompatActivity {
 
                 NotesModel notesModel = new NotesModel(headingText, descriptionText, selectedTagName, false, new Date());
                 repository.getNotesCollection(Constants.UserAuthID).document().set(notesModel)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(CreateEditNotesActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
+                        .addOnSuccessListener(unused -> {
+//                            Toast.makeText(CreateEditNotesActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
+                            finish();
                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(CreateEditNotesActivity.this, "Try again later", Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
+                        .addOnFailureListener(e -> Toast.makeText(CreateEditNotesActivity.this, "Try again later", Toast.LENGTH_SHORT).show());
 
             }
 

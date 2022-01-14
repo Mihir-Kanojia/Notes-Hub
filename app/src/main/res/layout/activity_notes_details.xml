@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/card_color"
-                app:cardCornerRadius="28dp"
+                app:cardCornerRadius="22dp"
                 app:layout_constraintEnd_toEndOf="@id/vGuidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/vGuidelineStart"
                 app:layout_constraintTop_toBottomOf="@+id/hGuideline">
@@ -83,11 +83,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:layout_marginEnd="16dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
                         android:text="@string/edit"
                         android:textColor="@color/mango_tango"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tvHeading" />
+                        app:layout_constraintTop_toTopOf="@+id/tvHeading"
+                        android:focusable="true" />
 
                     <TextView
                         android:id="@+id/tvCreatedDate"
@@ -117,9 +120,9 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
-                        android:minHeight="300dp"
                         android:layout_marginBottom="10dp"
                         android:justificationMode="inter_word"
+                        android:minHeight="300dp"
                         android:paddingStart="16dp"
                         android:paddingEnd="0dp"
                         android:text="I recd make fudge with just chocolate chips, sweetened condensed milk, vanilla extract, and a thick pot on slow heat. I tried it with dark chocolate chunks and I tried it with semi-sweet chocolate chips. It's better with both kinds. It comes out pretty bad with just the dark chocolate. The best add-ins are crushed almonds and marshmallows -- what you get from that is Rocky Road. It takes about twenty minutes from start to fridge, and then it takes about six months to work off the twenty pounds you gain from eating it. All things in moderation, friends. All things in moderation."
@@ -150,13 +153,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
-                        android:background="@null"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
                         android:contentDescription="@string/note_will_be_moved_to_bin"
                         android:src="@drawable/ic_delete"
                         app:layout_constraintBottom_toBottomOf="@id/tvLastUpdatedTime"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tvLastUpdatedTime"
-                        app:tint="@color/mango_tango" />
+                        app:tint="@color/mango_tango"
+                        android:focusable="true" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

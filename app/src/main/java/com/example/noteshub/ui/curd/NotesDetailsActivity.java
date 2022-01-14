@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.Constants;
 import com.example.noteshub.R;
 import com.example.noteshub.databinding.ActivityNotesDetailsBinding;
+import com.example.noteshub.managers.ActivitySwitchManager;
 import com.example.noteshub.model.NotesModel;
 import com.example.noteshub.repository.FirestoreRepository;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -59,6 +60,13 @@ public class NotesDetailsActivity extends AppCompatActivity {
         binding.tvCreatedDate.setText(new SimpleDateFormat("dd, MMMM, yyyy", Locale.ENGLISH).format(originalNoteModel.createdDate));
         binding.tvLastUpdatedTime.setText(getTimeAgo(originalNoteModel.lastUpdatedDate));
 
+        binding.tvEditNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ActivitySwitchManager(NotesDetailsActivity.this, CreateEditNotesActivity.class)
+                        .openActivityWithoutFinish("NOTES_DETAILS", originalNoteModel);
+            }
+        });
 
         binding.ibDeleteNotes.setOnClickListener(view -> new AlertDialog.Builder(NotesDetailsActivity.this,R.style.DeleteDialogTheme)
                 .setTitle("Delete note")
@@ -66,6 +74,7 @@ public class NotesDetailsActivity extends AppCompatActivity {
                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> deleteCurrentNoteDocument())
                 .setNegativeButton(android.R.string.no, null)
                 .show());
+
 
 
     }

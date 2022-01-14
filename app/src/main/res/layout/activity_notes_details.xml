@@ -73,12 +73,12 @@
                         android:textColor="@color/mango_tango"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@+id/tvEdit"
+                        app:layout_constraintEnd_toStartOf="@+id/tvEditNote"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tvEdit"
+                        android:id="@+id/tvEditNote"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"

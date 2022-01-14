@@ -1,12 +1,7 @@
 package com.example.noteshub.ui.curd;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -16,16 +11,16 @@ import com.example.noteshub.R;
 import com.example.noteshub.databinding.ActivityCreateEditNotesBinding;
 import com.example.noteshub.model.NotesModel;
 import com.example.noteshub.repository.FirestoreRepository;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.Transaction;
 
 import java.util.Date;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 public class CreateEditNotesActivity extends AppCompatActivity {
 
     private ActivityCreateEditNotesBinding binding;
-    private FirestoreRepository repository = new FirestoreRepository();
+    private final FirestoreRepository repository = new FirestoreRepository();
     private String headingText;
     private String descriptionText;
     private NotesModel originalNoteModel;

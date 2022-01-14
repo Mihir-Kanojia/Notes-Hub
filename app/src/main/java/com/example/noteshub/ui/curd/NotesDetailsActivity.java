@@ -1,11 +1,6 @@
 package com.example.noteshub.ui.curd;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,19 +14,20 @@ import com.example.noteshub.databinding.ActivityNotesDetailsBinding;
 import com.example.noteshub.managers.ActivitySwitchManager;
 import com.example.noteshub.model.NotesModel;
 import com.example.noteshub.repository.FirestoreRepository;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class NotesDetailsActivity extends AppCompatActivity {
 
     private ActivityNotesDetailsBinding binding;
     private NotesModel originalNoteModel;
-    private FirestoreRepository repository = new FirestoreRepository();
+    private final FirestoreRepository repository = new FirestoreRepository();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +56,8 @@ public class NotesDetailsActivity extends AppCompatActivity {
         binding.tvCreatedDate.setText(new SimpleDateFormat("dd, MMMM, yyyy", Locale.ENGLISH).format(originalNoteModel.createdDate));
         binding.tvLastUpdatedTime.setText(getTimeAgo(originalNoteModel.lastUpdatedDate));
 
-        binding.tvEditNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new ActivitySwitchManager(NotesDetailsActivity.this, CreateEditNotesActivity.class)
-                        .openActivityWithoutFinish("NOTES_DETAILS", originalNoteModel);
-            }
-        });
+        binding.tvEditNote.setOnClickListener(view -> new ActivitySwitchManager(NotesDetailsActivity.this, CreateEditNotesActivity.class)
+                .openActivityWithoutFinish("NOTES_DETAILS", originalNoteModel));
 
         binding.ibDeleteNotes.setOnClickListener(view -> new AlertDialog.Builder(NotesDetailsActivity.this,R.style.DeleteDialogTheme)
                 .setTitle("Delete note")

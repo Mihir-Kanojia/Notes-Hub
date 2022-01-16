@@ -8,5 +8,8 @@ public class Constants {
 
     public static String UserAuthID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
+    public static String UserName = "";
+    public static int profileNumber = -1;
+
 
 }

@@ -15,19 +15,24 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.Constants;
 import com.example.noteshub.CoreApp;
 import com.example.noteshub.R;
 import com.example.noteshub.databinding.ActivityDashboardBinding;
 import com.example.noteshub.managers.ActivitySwitchManager;
+import com.example.noteshub.repository.FirestoreRepository;
 import com.example.noteshub.ui.curd.CreateEditNotesActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+
+import java.util.Objects;
 
 public class DashboardActivity extends AppCompatActivity {
 
     private ActivityDashboardBinding binding;
     boolean doubleBackToExitPressedOnce = false;
     NavController navController;
+    private FirestoreRepository repository = new FirestoreRepository();
 
     DashHomeFragment dashHomeFragment = new DashHomeFragment();
     DashCameraFragment dashCameraFragment = new DashCameraFragment();
@@ -73,6 +78,7 @@ public class DashboardActivity extends AppCompatActivity {
     private void initComponents() {
         CoreApp.getInstance().setActivity(this);
 
+
         navController = Navigation.findNavController(this, R.id.dashFragment);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
 
@@ -85,6 +91,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onResume() {

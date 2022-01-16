@@ -53,6 +53,19 @@ public class CreateEditNotesActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+//        if(isForEditing){
+//            Intent intent = new Intent();
+//            intent.putExtra("NOTES_DETAILS", originalNoteModel);
+//            setResult(RESULT_OK, intent);
+//            finish();
+//        }
+
+        super.onBackPressed();
+    }
+
     private void initComponents() {
 
         if (isForEditing) {

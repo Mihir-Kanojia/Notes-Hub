@@ -54,7 +54,7 @@ public class NotesDetailsActivity extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
                         originalNoteModel = (NotesModel) Objects.requireNonNull(data).getSerializableExtra("NOTES_DETAILS");
-                        Toast.makeText(NotesDetailsActivity.this, "onActivityResult", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(NotesDetailsActivity.this, "onActivityResult", Toast.LENGTH_SHORT).show();
                         initComponents();
                     }
                 });

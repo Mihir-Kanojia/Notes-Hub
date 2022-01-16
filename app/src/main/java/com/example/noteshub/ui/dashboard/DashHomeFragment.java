@@ -36,6 +36,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import static com.example.Constants.UserName;
+import static com.example.Constants.profileNumber;
+
 
 public class DashHomeFragment extends BaseFragment {
 
@@ -77,44 +80,53 @@ public class DashHomeFragment extends BaseFragment {
 
         activity = requireActivity();
 
-        repository.getUserProfileCollection().document(Constants.UserAuthID)
-                .get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (getActivity() != null) {
-                        String username = documentSnapshot.getString("USER_NAME");
-                        if (username != null && username.length() > 20) {
-                            username = username.substring(0, 20);
-                        }
-                        username = getActivity().getString(R.string.hi) + " " + username + ",";
-                        int profileNumber = Objects.requireNonNull(documentSnapshot.getLong("PROFILE_NUMBER")).intValue();
+        if (Constants.profileNumber == -1) {
+            getUserNameAndProfile();
+        } else {
 
-                        binding.tvGreetUser.setText(username);
-                        int imageRes;
-                        switch (profileNumber) {
-                            case 1:
-                                imageRes = R.drawable.profile_1;
-                                break;
-                            case 2:
-                                imageRes = R.drawable.profile_2;
-                                break;
-                            case 3:
-                                imageRes = R.drawable.profile_3;
-                                break;
-                            case 4:
-                                imageRes = R.drawable.profile_4;
-                                break;
-                            case 5:
-                                imageRes = R.drawable.profile_5;
-                                break;
-                            default:
-                                imageRes = R.drawable.profile_6;
-                                break;
+            setUpUserNameAndProfile();
 
-                        }
-                        binding.profileImage.setImageResource(imageRes);
-                    }
-                })
-                .addOnFailureListener(e -> Toast.makeText(activity, "Try again later.", Toast.LENGTH_SHORT).show());
+
+        }
+
+//        repository.getUserProfileCollection().document(Constants.UserAuthID)
+//                .get()
+//                .addOnSuccessListener(documentSnapshot -> {
+//                    if (getActivity() != null) {
+//                        String username = documentSnapshot.getString("USER_NAME");
+//                        if (username != null && username.length() > 20) {
+//                            username = username.substring(0, 20);
+//                        }
+//                        username = getActivity().getString(R.string.hi) + " " + username + ",";
+//                        int profileNumber = Objects.requireNonNull(documentSnapshot.getLong("PROFILE_NUMBER")).intValue();
+//
+//                        binding.tvGreetUser.setText(username);
+//                        int imageRes;
+//                        switch (profileNumber) {
+//                            case 1:
+//                                imageRes = R.drawable.profile_1;
+//                                break;
+//                            case 2:
+//                                imageRes = R.drawable.profile_2;
+//                                break;
+//                            case 3:
+//                                imageRes = R.drawable.profile_3;
+//                                break;
+//                            case 4:
+//                                imageRes = R.drawable.profile_4;
+//                                break;
+//                            case 5:
+//                                imageRes = R.drawable.profile_5;
+//                                break;
+//                            default:
+//                                imageRes = R.drawable.profile_6;
+//                                break;
+//
+//                        }
+//                        binding.profileImage.setImageResource(imageRes);
+//                    }
+//                })
+//                .addOnFailureListener(e -> Toast.makeText(activity, "Try again later.", Toast.LENGTH_SHORT).show());
 
 
         notesAdapter = new NotesAdapter(notesModelList);
@@ -133,6 +145,33 @@ public class DashHomeFragment extends BaseFragment {
 
         getNotes();
 
+    }
+
+    private void setUpUserNameAndProfile() {
+        binding.tvGreetUser.setText(Constants.UserName);
+        int imageRes;
+        switch (Constants.profileNumber) {
+            case 1:
+                imageRes = R.drawable.profile_1;
+                break;
+            case 2:
+                imageRes = R.drawable.profile_2;
+                break;
+            case 3:
+                imageRes = R.drawable.profile_3;
+                break;
+            case 4:
+                imageRes = R.drawable.profile_4;
+                break;
+            case 5:
+                imageRes = R.drawable.profile_5;
+                break;
+            default:
+                imageRes = R.drawable.profile_6;
+                break;
+
+        }
+        binding.profileImage.setImageResource(imageRes);
     }
 
     private void getNotes() {
@@ -172,4 +211,24 @@ public class DashHomeFragment extends BaseFragment {
 
     }
 
+    private void getUserNameAndProfile() {
+        repository.getUserProfileCollection().document(Constants.UserAuthID)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    String username = documentSnapshot.getString("USER_NAME");
+                    if (username != null && username.length() > 20) {
+                        username = username.substring(0, 20);
+                    }
+                    username = getActivity().getString(R.string.hi) + " " + username + ",";
+                    int profileNumber = Objects.requireNonNull(documentSnapshot.getLong("PROFILE_NUMBER")).intValue();
+
+                    Constants.UserName = username;
+                    Constants.profileNumber = profileNumber;
+
+                    setUpUserNameAndProfile();
+
+                })
+                .addOnFailureListener(e -> Toast.makeText(getActivity(), "Try again later.", Toast.LENGTH_SHORT).show());
+
+    }
 }

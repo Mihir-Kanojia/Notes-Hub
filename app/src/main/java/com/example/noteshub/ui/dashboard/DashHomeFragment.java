@@ -1,5 +1,6 @@
 package com.example.noteshub.ui.dashboard;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,12 @@ public class DashHomeFragment extends BaseFragment {
     private FirestoreRepository repository = new FirestoreRepository();
     private NotesAdapter notesAdapter;
     private List<NotesModel> notesModelList = new ArrayList<>();
+
+    private FragmentDashHomeListener listener;
+
+    public interface FragmentDashHomeListener {
+        void noNotesCreatedYet();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -145,6 +152,7 @@ public class DashHomeFragment extends BaseFragment {
 
         getNotes();
 
+
     }
 
     private void setUpUserNameAndProfile() {
@@ -171,6 +179,7 @@ public class DashHomeFragment extends BaseFragment {
                 break;
 
         }
+
         binding.profileImage.setImageResource(imageRes);
     }
 
@@ -195,6 +204,9 @@ public class DashHomeFragment extends BaseFragment {
                                     notesModelList.add(notesModel);
                             }
                             notesAdapter.notifyDataSetChanged();
+                            if (notesModelList.size() <= 0) {
+                                listener.noNotesCreatedYet();
+                            }
 
                         } else {
                             Toast.makeText(activity, "Try again later", Toast.LENGTH_SHORT).show();
@@ -207,7 +219,6 @@ public class DashHomeFragment extends BaseFragment {
                         Toast.makeText(activity, "Try again later", Toast.LENGTH_SHORT).show();
                     }
                 });
-
 
     }
 
@@ -230,5 +241,22 @@ public class DashHomeFragment extends BaseFragment {
                 })
                 .addOnFailureListener(e -> Toast.makeText(getActivity(), "Try again later.", Toast.LENGTH_SHORT).show());
 
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentDashHomeListener) {
+            listener = (FragmentDashHomeListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + "must implement Listener");
+        }
     }
 }

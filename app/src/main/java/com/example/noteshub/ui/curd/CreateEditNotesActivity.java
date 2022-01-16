@@ -43,8 +43,8 @@ public class CreateEditNotesActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Intent intent = getIntent();
-        if (intent != null) {
-            originalNoteModel = (NotesModel) intent.getSerializableExtra("NOTES_DETAILS");
+        originalNoteModel = (NotesModel) intent.getSerializableExtra("NOTES_DETAILS");
+        if (originalNoteModel != null) {
             isForEditing = true;
         }
 
@@ -123,7 +123,7 @@ public class CreateEditNotesActivity extends AppCompatActivity {
             if (isDescriptionEdited)
                 updatedMap.put("description", descriptionText);
 
-            NotesModel modell =  new NotesModel(headingText,descriptionText, originalNoteModel.selectedTag, originalNoteModel.isDeleted, new Date());
+            NotesModel modell = new NotesModel(headingText, descriptionText, originalNoteModel.selectedTag, originalNoteModel.isDeleted, new Date());
 
             repository.getNotesCollection(Constants.UserAuthID)
                     .document(originalNoteModel.id)

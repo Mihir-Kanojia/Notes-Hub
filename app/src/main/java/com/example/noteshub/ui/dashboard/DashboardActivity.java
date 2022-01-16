@@ -7,6 +7,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -22,12 +23,15 @@ import com.example.noteshub.databinding.ActivityDashboardBinding;
 import com.example.noteshub.managers.ActivitySwitchManager;
 import com.example.noteshub.repository.FirestoreRepository;
 import com.example.noteshub.ui.curd.CreateEditNotesActivity;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Objects;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity implements DashHomeFragment.FragmentDashHomeListener {
 
     private ActivityDashboardBinding binding;
     boolean doubleBackToExitPressedOnce = false;
@@ -92,6 +96,35 @@ public class DashboardActivity extends AppCompatActivity {
         });
     }
 
+    public void showTapTargetView() {
+
+        TapTargetView.showFor(this, TapTarget.forView(binding.fabCreateNote, "Let's get started", "Click here, To add your first note")
+                        .outerCircleColor(R.color.mango_tango)
+                        .outerCircleAlpha(0.86f)
+                        .targetCircleColor(R.color.black)
+                        .titleTextSize(14)
+                        .titleTextColor(R.color.white)
+                        .descriptionTextColor(R.color.white)
+                        .textColor(R.color.white)
+                        .textTypeface(Typeface.SANS_SERIF)
+                        .dimColor(R.color.black)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .tintTarget(true)
+                        .transparentTarget(true)
+                        .targetRadius(70),
+                new TapTargetView.Listener() {
+
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetClick(view);
+                        new ActivitySwitchManager(DashboardActivity.this, CreateEditNotesActivity.class).openActivityWithoutFinish();
+
+                    }
+                });
+
+    }
+
 
     @Override
     protected void onResume() {
@@ -118,5 +151,10 @@ public class DashboardActivity extends AppCompatActivity {
         Toast.makeText(this, "Hit back to exit", Toast.LENGTH_SHORT).show();
         new Handler(getMainLooper()).postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
 
+    }
+
+    @Override
+    public void noNotesCreatedYet() {
+        showTapTargetView();
     }
 }

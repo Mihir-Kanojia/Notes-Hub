@@ -66,8 +66,6 @@ public class NotesDetailsActivity extends AppCompatActivity {
                 .setNegativeButton(android.R.string.no, null)
                 .show());
 
-
-
     }
 
     private void deleteCurrentNoteDocument() {

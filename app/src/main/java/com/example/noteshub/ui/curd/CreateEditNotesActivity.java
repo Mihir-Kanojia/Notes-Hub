@@ -110,11 +110,16 @@ public class CreateEditNotesActivity extends AppCompatActivity {
             if (isDescriptionEdited)
                 updatedMap.put("description", descriptionText);
 
+            NotesModel modell =  new NotesModel(headingText,descriptionText, originalNoteModel.selectedTag, originalNoteModel.isDeleted, new Date());
+
             repository.getNotesCollection(Constants.UserAuthID)
                     .document(originalNoteModel.id)
                     .update(updatedMap)
                     .addOnSuccessListener(unused -> {
                         Toast.makeText(CreateEditNotesActivity.this, "Changes saved", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.putExtra("NOTES_DETAILS", modell);
+                        setResult(RESULT_OK, intent);
                         finish();
                     })
                     .addOnFailureListener(e -> Toast.makeText(CreateEditNotesActivity.this, "Unable to save changes\nTry again", Toast.LENGTH_SHORT).show());

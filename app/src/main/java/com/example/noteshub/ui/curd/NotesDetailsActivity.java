@@ -1,5 +1,6 @@
 package com.example.noteshub.ui.curd;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +20,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,9 +45,30 @@ public class NotesDetailsActivity extends AppCompatActivity {
         binding = ActivityNotesDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Intent intent = getIntent();
-        originalNoteModel = (NotesModel) intent.getSerializableExtra("NOTES_DETAILS");
+        Intent intentGET = getIntent();
+        originalNoteModel = (NotesModel) intentGET.getSerializableExtra("NOTES_DETAILS");
 
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        originalNoteModel = (NotesModel) Objects.requireNonNull(data).getSerializableExtra("NOTES_DETAILS");
+                        Toast.makeText(NotesDetailsActivity.this, "onActivityResult", Toast.LENGTH_SHORT).show();
+                        initComponents();
+                    }
+                });
+
+        binding.tvEditNote.setOnClickListener(view -> {
+//            new ActivitySwitchManager(NotesDetailsActivity.this, CreateEditNotesActivity.class)
+//                    .openActivityWithoutFinish("NOTES_DETAILS", originalNoteModel);
+
+            Intent intent = new Intent(NotesDetailsActivity.this, CreateEditNotesActivity.class);
+            intent.putExtra("NOTES_DETAILS", originalNoteModel);
+            activityResultLauncher.launch(intent);
+
+
+        });
 
         initComponents();
 
@@ -56,10 +83,9 @@ public class NotesDetailsActivity extends AppCompatActivity {
         binding.tvCreatedDate.setText(new SimpleDateFormat("dd, MMMM, yyyy", Locale.ENGLISH).format(originalNoteModel.createdDate));
         binding.tvLastUpdatedTime.setText(getTimeAgo(originalNoteModel.lastUpdatedDate));
 
-        binding.tvEditNote.setOnClickListener(view -> new ActivitySwitchManager(NotesDetailsActivity.this, CreateEditNotesActivity.class)
-                .openActivityWithoutFinish("NOTES_DETAILS", originalNoteModel));
 
-        binding.ibDeleteNotes.setOnClickListener(view -> new AlertDialog.Builder(NotesDetailsActivity.this,R.style.DeleteDialogTheme)
+
+        binding.ibDeleteNotes.setOnClickListener(view -> new AlertDialog.Builder(NotesDetailsActivity.this, R.style.DeleteDialogTheme)
                 .setTitle("Delete note")
                 .setMessage("Are you sure you want to delete this note?")
                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> deleteCurrentNoteDocument())
@@ -109,7 +135,7 @@ public class NotesDetailsActivity extends AppCompatActivity {
         if (dim == 0) {
             timeAgo = ctx.getResources().getString(R.string.date_util_term_less) + " " + ctx.getResources().getString(R.string.date_util_term_a) + " " + ctx.getResources().getString(R.string.date_util_unit_minute);
         } else if (dim == 1) {
-            return "Updated " +"1 " + ctx.getResources().getString(R.string.date_util_unit_minute);
+            return "Updated " + "1 " + ctx.getResources().getString(R.string.date_util_unit_minute);
         } else if (dim >= 2 && dim <= 44) {
             timeAgo = dim + " " + ctx.getResources().getString(R.string.date_util_unit_minutes);
         } else if (dim >= 45 && dim <= 89) {

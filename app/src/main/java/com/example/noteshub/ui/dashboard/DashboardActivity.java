@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -42,6 +43,7 @@ public class DashboardActivity extends AppCompatActivity implements DashHomeFrag
     DashCameraFragment dashCameraFragment = new DashCameraFragment();
     DashManageFragment dashManageFragment = new DashManageFragment();
     DashBinFragment dashBinFragment = new DashBinFragment();
+    private TapTargetView tapTargetView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +100,33 @@ public class DashboardActivity extends AppCompatActivity implements DashHomeFrag
 
     public void showTapTargetView() {
 
-        TapTargetView.showFor(this, TapTarget.forView(binding.fabCreateNote, "Let's get started", "Click here, To add your first note")
+//        TapTargetView.showFor(this, TapTarget.forView(binding.fabCreateNote, "Let's get started", "Click here, To add your first note")
+//                        .outerCircleColor(R.color.mango_tango)
+//                        .outerCircleAlpha(0.86f)
+//                        .targetCircleColor(R.color.black)
+//                        .titleTextSize(14)
+//                        .titleTextColor(R.color.white)
+//                        .descriptionTextColor(R.color.white)
+//                        .textColor(R.color.white)
+//                        .textTypeface(Typeface.SANS_SERIF)
+//                        .dimColor(R.color.black)
+//                        .drawShadow(true)
+//                        .cancelable(false)
+//                        .tintTarget(true)
+//                        .transparentTarget(true)
+//                        .targetRadius(70),
+//                new TapTargetView.Listener() {
+//
+//                    @Override
+//                    public void onTargetClick(TapTargetView view) {
+//                        super.onTargetClick(view);
+//                        new ActivitySwitchManager(DashboardActivity.this, CreateEditNotesActivity.class).openActivityWithoutFinish();
+//
+//                    }
+//                });
+
+
+        tapTargetView = TapTargetView.showFor(this, TapTarget.forView(binding.fabCreateNote, "Let's get started", "Click here, To add your first note")
                         .outerCircleColor(R.color.mango_tango)
                         .outerCircleAlpha(0.86f)
                         .targetCircleColor(R.color.black)
@@ -118,6 +146,7 @@ public class DashboardActivity extends AppCompatActivity implements DashHomeFrag
                     @Override
                     public void onTargetClick(TapTargetView view) {
                         super.onTargetClick(view);
+                        view.dismiss(true);
                         new ActivitySwitchManager(DashboardActivity.this, CreateEditNotesActivity.class).openActivityWithoutFinish();
 
                     }
@@ -129,6 +158,16 @@ public class DashboardActivity extends AppCompatActivity implements DashHomeFrag
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (tapTargetView != null) {
+//            if (tapTargetView.isShown())
+                tapTargetView.dismiss(false);
+
+            if(tapTargetView.isVisible()){
+                Log.d("TAG", "onResume: asdlf");
+            }
+        }
+
 
     }
 

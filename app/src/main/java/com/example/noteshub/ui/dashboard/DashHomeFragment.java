@@ -49,6 +49,7 @@ public class DashHomeFragment extends BaseFragment {
     private List<NotesModel> notesModelList = new ArrayList<>();
 
     private FragmentDashHomeListener listener;
+    private boolean isGetNotesMethodCalledInOnCreateView = false;
 
     public interface FragmentDashHomeListener {
         void noNotesCreatedYet();
@@ -149,9 +150,6 @@ public class DashHomeFragment extends BaseFragment {
             }
 
         });
-
-        getNotes();
-
 
     }
 
